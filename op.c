@@ -1,25 +1,22 @@
 #include <string.h>
 
-int isop(char *s) {
-    return !strcmp(s, "+") || !strcmp(s, "-") || !strcmp(s, "*") || !strcmp(s, "/");
+int isop(char s) {
+    return s == '+' || s == '-' || s == '*' || s == '/';
 }
 
-void perform_op(char *s) {
-    int temp = 0;
-    switch (*s) {
+void perform_op(char s) {
+    int temp;
+    switch (s) {
         case '+':
             push(pop() + pop()); 
             break; 
-        case '-':
-            temp = pop();
-            push(pop() - pop());
-            break;
         case '*':
-            push(pop() * pop());
+            pop();
+            pop();
             break;
         case '/':
             temp = pop();
-            push(pop() / temp);        
+            push(pop() / temp);
             break;
         default:
             break;
